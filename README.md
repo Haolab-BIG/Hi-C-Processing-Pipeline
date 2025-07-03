@@ -59,7 +59,7 @@ hicexplorer
 # Part II Codes
 ## Step 1: Preprocessing
 In this section, you will convert the raw FASTQ files into .hic files, which can be used for subsequent analysis.
-```
+```bash
 workdir=/2.trim
 botiemap=/3.bowtie
 homertag=/4.homertag
@@ -90,7 +90,7 @@ done
 
 ## Step 2: Combine deplications
 Check duplication correlation
-```
+```bash
 #### contact matrix
 matrixdir=/5.transform
 homerdir=/4.homertag
@@ -125,7 +125,7 @@ do
 done
 ```
 Combine deplications
-```
+```bash
 botiemap=/3.bowtie
 homertag=/4.homertag
 for filenameshort in XX ;do
@@ -141,7 +141,7 @@ done
 ```
 ## Step 3: Identifying TAD and loop
 Identifying TAD
-```
+```bash
 onTADdir=XX    ### path to onTAD software
 ontadout=/6.OnTAD
 homerdir=/4.homertag
@@ -171,7 +171,7 @@ for filename in XXX ;do
 done
 ```
 QC for TAD
-```
+```bash
 ontadout=/6.OnTAD
 homerdir=/4.homertag
 for filename in XXX ;do
@@ -191,7 +191,7 @@ for filename in XXX ;do
 done
 ```
 Identifying Loop
-```
+```bash
 ###### generate the contact maps file
 insdir=/5.transform/matirx
 homerdir=/4.homertag
@@ -264,7 +264,7 @@ do
 done
 ```
 QC for Loop
-```
+```bash
 homerdir=/4.homertag
 insdir=/5.transform/matrix
 outputdir=/7.loop
@@ -290,7 +290,7 @@ do
 done
 ```
 ## Step 4: Identifying compartment
-```
+```bash
 ###### generate the PC1
 homerdir=/4.homertag
 for filename in XX ;
