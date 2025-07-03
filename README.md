@@ -11,7 +11,7 @@ As illustrated in the figure,
 
 We will proceed by structuring our workflow according to (ii).
 
-## File Structure
+## ii. File Structure
 ```
 Hi-C
 ├─ 1.rawdata
