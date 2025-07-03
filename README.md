@@ -129,7 +129,7 @@ Combine deplications
 botiemap=/3.bowtie
 homertag=/4.homertag
 for filenameshort in XX ;do
-	echo ${filenameshort3}
+	echo ${filenameshort}
 	samtools merge -@ 20 ${botiemap}/${filenameshort}_mergedR1.bam ${botiemap}/${filenameshort}_rep1_R1.hg38.sorted.bam ${botiemap}/${filenameshort}_rep2_R1.hg38.sorted.bam
 	samtools merge -@ 20 ${botiemap}/${filenameshort}_mergedR2.bam ${botiemap}/${filenameshort}_rep1_R2.hg38.sorted.bam ${botiemap}/${filenameshort}_rep2_R2.hg38.sorted.bam
 	cd ${findtad}
