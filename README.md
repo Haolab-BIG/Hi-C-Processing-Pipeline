@@ -36,16 +36,8 @@ Hi-C
 │    ├─ *rep2
 │    └─ *HicMerge
 ├─ 5.transform
-│    ├─ multiBigWigSummary
-│    ├─ PCA 
-│    └─ correlation
 ├─ 6.OnTAD
-│    ├─ multiBigWigSummary
-│    ├─ PCA 
-│    └─ correlation
 └─ 7.loop
-       ├─ computeMatrix 
-       └─ heatmap
 ```
 
 ## iii. Software Required
