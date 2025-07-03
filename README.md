@@ -192,6 +192,38 @@ done
 ```
 Identifying Loop
 ```
+###### generate the contact maps file
+insdir=/5.transform/matirx
+homerdir=/4.homertag
+cd ${insdir}
+res=10000
+for filename in `ls ${homerdir}`;
+do
+	echo ${filename}
+	mkdir -p ${insdir}/${filename}
+	hic_file=${homerdir}/${filename}/${filename}.hic
+	chromosomes=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22" "X" "Y")
+	total=${#chromosomes[@]}
+	for ((i=0; i<total; i++)); do
+		for ((j=i; j<total; j++)); do
+			chr1="${chromosomes[i]}"  # 第一个染色体
+			chr2="${chromosomes[j]}"  # 第二个染色体
+			matrix_file=${filename}_matrix_chr${chr1}chr${chr2}_${res}.txt
+			juicer_tools dump observed NONE "$hic_file" "$chr1" "$chr2" BP "$res" >${insdir}/${filename}/$matrix_file
+		done
+	done
+done
+for filename in `ls ${homerdir}`;
+do
+	nonetxts=$(ls ${insdir}/${filename}/${filename}_matrix*${res}.txt)
+	cd ${insdir}/${filename}
+	for file in $nonetxts; do
+		nonetxtschr=($(echo $file | sed -E 's/.*chr([a-zA-Z0-9]+)chr([a-zA-Z0-9]+).*/\1 \2/'))
+		awk -v chr1=${nonetxtschr[0]} -v chr2=${nonetxtschr[1]} 'BEGIN{FS=OFS="\t"} {print chr1, $1, chr2, $2, $3}' $file > ${file/_10000.txt/_10000_chr.txt}  ####
+	done
+	cat ${insdir}/${filename}/${filename}_matrix*_${res}_chr.txt | gzip > ${insdir}/${filename}/${filename}_matrix_${res}_combine.txt.gz
+done
+
 ###### generate the fragment mappability file, for a fixed-size dataset
 outputdir=/7.loop
 fithic2dir=XX   ## path to fithic2
